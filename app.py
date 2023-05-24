@@ -64,34 +64,8 @@ app.layout = html.Div(children=[
     dcc.Graph(id='example-pie', figure=fig_pie),
 ])
 #gráficos de pizza com métodos callback
-app.layout = html.Div([
-    html.H4('Analises Tesouro Direto'),
-    dcc.Graph(id="graph"),
-    html.P("Names:"),
-    dcc.Dropdown(id='names',
-        options=['Faixa Etária', "Gênero", "Investidores por Região"],
-        value='Gênero', clearable=False
-    ),
-    html.P("Values:"),
-    dcc.Dropdown(id='values',
-        options=["Participação por Faixa Etária","Participação_Genero", "Participação por Região"],
-        value='Participação_Genero', clearable=False
-    ),
-])
-
-
-@app.callback(
-    Output("graph", "figure"), 
-    Input("names", "value"), 
-    Input("values", "value"))
-def generate_chart(names, values):
-    df_age = px.data.tips() 
-    fig = px.pie(df_age, values=values, names=names, hole=.3)
-    return fig
 
 if __name__ == '__main__':
     app.run_server(debug=True)
 
 
-#"Gênero" : ['Masculino', 'Feminino'],
-#"Participação_Genero" : [73.2, 26.8],
